@@ -101,7 +101,7 @@ def main():
     print(model)
     print('Trainable params: ', sum(p.numel() for p in model.parameters() if p.requires_grad))
 
-    optimizer = torch.optim.Adadelta(model.parameters(), lr=0.1)
+    optimizer = torch.optim.Adadelta(model.parameters(), lr=0.3)
 
     trainer = mz.trainers.Trainer(
         model=model,
@@ -109,7 +109,8 @@ def main():
         trainloader=trainloader,
         validloader=validloader,
         validate_interval=None,
-        epochs=10
+        epochs=100,
+        patience=5
     )
 
     trainer.run()
